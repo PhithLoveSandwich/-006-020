@@ -26,7 +26,6 @@ if (isset($_SESSION['user_id'])) {
 // ดึงข้อมูลห้องทั้งหมดจากฐานข้อมูล
 $sql = "SELECT * FROM room";
 $result = $conn->query($sql);
-
 ?>
 
 <!DOCTYPE html>
@@ -58,9 +57,21 @@ $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 // แสดงห้องทั้งหมด
                 while ($room = $result->fetch_assoc()) {
+                    // กำหนดภาพพื้นหลังตามประเภทห้อง
+                    $roomClass = $room['Class'];
+                    // กำหนดเส้นทางของภาพตามประเภทห้อง
+                    if ($roomClass == 'Standard') {
+                        $image = 'nor.jpg';
+                    } elseif ($roomClass == 'Deluxe') {
+                        $image = 'pre.jpg';
+                    } else {
+                        $image = 'default.jpg'; // สำหรับกรณีที่ห้องไม่มีประเภทที่กำหนดไว้
+                    }
+                    
                     echo '
                     <div class="card">
-                        <h3>' . $room['Class'] . '</h3>
+                        <img src="images/' . $image . '" alt="' . $roomClass . '" class="room-image">
+                        <h3>' . $roomClass . '</h3>
                         <p><strong>Price:</strong> ' . $room['Price'] . '</p>
                         <p><strong>Status:</strong> ' . $room['Status'] . '</p>
                         <a href="book.php?room_id=' . $room['RoomID'] . '" class="btn-book">Book Now</a>

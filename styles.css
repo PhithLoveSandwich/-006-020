@@ -6,14 +6,16 @@ body {
     background-position: center;
     margin: 0;
     padding: 0;
+    color: #fff; /* Ensures text is visible against the background */
 }
 
 /* Header Section */
 header {
-    background-color: #333;
+    background-color: rgba(0, 0, 0, 0.6); /* Dark background with opacity */
     color: white;
     padding: 20px 0;
     text-align: center;
+    position: relative;
 }
 
 header h1 {
@@ -29,7 +31,7 @@ header .user-info {
 
 /* Container for content */
 .container {
-    width: 80%;
+    width: 90%; /* Increased width to utilize more screen space */
     margin: 0 auto;
 }
 
@@ -38,7 +40,8 @@ h2 {
     text-align: center;
     margin-top: 30px;
     font-size: 28px;
-    color: #333;
+    color: #fff; /* Light color for headings against dark background */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4); /* Adding text shadow for better readability */
 }
 
 /* Cards for rooms */
@@ -51,27 +54,30 @@ h2 {
 
 .card {
     background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 20px;
     border-radius: 8px;
     margin: 10px;
     max-width: 300px;
     text-align: center;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
     transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3); /* Enhanced shadow effect on hover */
 }
 
 .card h3 {
     font-size: 24px;
+    color: #333;
     margin-bottom: 10px;
 }
 
 .card p {
     font-size: 18px;
-    margin-bottom: 10px;
+    color: #555;
+    margin-bottom: 15px;
 }
 
 .card .btn-book {
@@ -83,10 +89,19 @@ h2 {
     text-decoration: none;
     display: inline-block;
     cursor: pointer;
+    font-size: 16px;
 }
 
 .card .btn-book:hover {
     background-color: #45a049;
+}
+
+/* Adding image styles for room images */
+.card .room-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
 /* Footer Section */
@@ -96,4 +111,24 @@ footer {
     text-align: center;
     padding: 20px;
     margin-top: 30px;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 28px;
+    }
+
+    .container {
+        width: 95%;
+    }
+
+    .card-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        max-width: 90%;
+    }
 }
